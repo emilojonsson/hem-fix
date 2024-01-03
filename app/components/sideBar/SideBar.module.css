@@ -1,0 +1,19 @@
+.sideBarContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  align-items: center;
+  color: #404220;
+  background: #f5d878;
+  background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+  padding-top: 15px;
+}
+
+.sideBarButton {
+  box-shadow: 0 2px 5px #ccc;
+  padding: 4px;
+  /* border: 2px solid black; */
+  border-radius: 3px;
+  background-color: #fff;
+}

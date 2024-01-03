@@ -22,6 +22,14 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/components/category/dataWhenLogIn.js",
+    "firebase/clientApp.tsx",
+    "firebase/clientApp.js"
+  ],
   "exclude": ["node_modules"]
 }

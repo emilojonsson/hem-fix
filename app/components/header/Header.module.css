@@ -1,0 +1,10 @@
+.headerContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: #f5d878;
+  background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+}
