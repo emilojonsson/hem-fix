@@ -14,7 +14,17 @@ const CategoryData: React.FC<Props> = ({ categoryName, onChange }) => {
     case "simpletask":
       break;
     case "gardentask":
-      return <CategoryGarden onChange={onChange} />;
+      const defaultValues = {
+        exposure: "Läge",
+        minZone: "Från zon",
+        maxZone: "Till zon",
+        plantingDistance: undefined,
+        soil: undefined,
+        prune: undefined,
+      };
+      return (
+        <CategoryGarden onChange={onChange} defaultValues={defaultValues} />
+      );
     case "maintenancetask":
       break;
     case "purchasetask":

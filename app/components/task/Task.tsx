@@ -1,6 +1,7 @@
 import style from "./Task.module.css";
 import FabButton from "../fabButton/FabButton";
 import TaskData from "../taskData/TaskData";
+import { useState } from "react";
 
 interface ITask {
   id: string;
@@ -15,7 +16,13 @@ interface Props {
 }
 
 const Task: React.FC<Props> = ({ taskItem, title, token, deleteTask }) => {
-  const handleClick = async () => {
+  const [editedTask, setEditedTask] = useState<ITask>({
+    id: taskItem.id,
+    title: taskItem.title,
+    categoryName: taskItem.categoryName,
+  });
+
+  const deleteClick = async () => {
     const categoryName = taskItem.categoryName;
     const taskId = taskItem.id;
     const deleteDataResponse = await fetch(
@@ -33,22 +40,73 @@ const Task: React.FC<Props> = ({ taskItem, title, token, deleteTask }) => {
     }
   };
 
+  function handleChange(
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) {
+    const { name, value } = event.target;
+    setEditedTask((prevTask) => {
+      return {
+        ...prevTask,
+        [name]: value,
+      };
+    });
+  }
+
+  const editClick = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const updateDataResponse = await fetch(
+      `https://localhost:7167/gardentask/update`,
+      {
+        method: "PUT",
+        headers: {
+          accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(editedTask),
+      }
+    );
+    if (updateDataResponse.ok) {
+      console.log("uppdaterat");
+    }
+  };
+
   return (
     <div className={style.taskContainer}>
-      <h1>{title}</h1>
-      <TaskData category={taskItem.categoryName} taskItem={taskItem} />
-      <FabButton
-        zoomIn={true}
-        onClick={handleClick}
-        iconName="delete"
-        buttonProps={{
-          position: "absolute",
-          right: 18,
-          bottom: -18,
-          width: 36,
-          height: 36,
-        }}
-      />
+      <form onSubmit={editClick}>
+        <textarea>{taskItem.title}</textarea>
+        <TaskData
+          category={taskItem.categoryName}
+          taskItem={taskItem}
+          onChange={handleChange}
+        />
+        <FabButton
+          zoomIn={true}
+          onClick={deleteClick}
+          iconName="delete"
+          buttonProps={{
+            position: "absolute",
+            right: 18,
+            bottom: -18,
+            width: 36,
+            height: 36,
+          }}
+        />
+        <FabButton
+          zoomIn={true}
+          type="submit"
+          iconName="editNote"
+          buttonProps={{
+            position: "absolute",
+            right: 58,
+            bottom: -18,
+            width: 36,
+            height: 36,
+          }}
+        />
+      </form>
     </div>
   );
 };

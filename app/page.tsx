@@ -25,6 +25,7 @@ function Home() {
   const [token, setToken] = useState<string>("");
 
   function addTask(newTask: ITask) {
+    console.log("newtask", newTask);
     const categoryIndex = findCategoryIndex(newTask);
     if (categoryIndex !== -1) {
       setCategories((prevCategories) => {

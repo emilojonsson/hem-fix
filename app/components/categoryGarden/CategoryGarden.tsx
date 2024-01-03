@@ -6,8 +6,16 @@ interface Props {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => void;
+  defaultValues: {
+    exposure: string | undefined;
+    minZone: string | undefined;
+    maxZone: string | undefined;
+    plantingDistance: string | undefined;
+    soil: string | undefined;
+    prune: string | undefined;
+  };
 }
-const CategoryGarden: React.FC<Props> = ({ onChange }) => {
+const CategoryGarden: React.FC<Props> = ({ onChange, defaultValues }) => {
   return (
     <div>
       <h1>Skötselråd</h1>
@@ -15,7 +23,7 @@ const CategoryGarden: React.FC<Props> = ({ onChange }) => {
         <select
           className={styles.dataChild}
           name="exposure"
-          defaultValue="Läge"
+          defaultValue={defaultValues.exposure}
           onChange={onChange}
         >
           <option value="Läge" disabled>
@@ -30,7 +38,7 @@ const CategoryGarden: React.FC<Props> = ({ onChange }) => {
         <select
           className={styles.dataChild}
           name="minZone"
-          defaultValue="Från zon"
+          defaultValue={defaultValues.minZone}
           onChange={onChange}
         >
           <option value="Från zon" disabled>
@@ -48,7 +56,7 @@ const CategoryGarden: React.FC<Props> = ({ onChange }) => {
         <select
           className={styles.dataChild}
           name="maxZone"
-          defaultValue={"Till zon"}
+          defaultValue={defaultValues.maxZone}
           onChange={onChange}
         >
           <option value="Till zon" disabled>
@@ -68,18 +76,21 @@ const CategoryGarden: React.FC<Props> = ({ onChange }) => {
           name="plantingDistance"
           placeholder="Plant.avst. [m]"
           onChange={onChange}
+          defaultValue={defaultValues.plantingDistance ?? ""}
         />
         <input
           className={styles.dataChild}
           placeholder="Jordmån"
           onChange={onChange}
           name="soil"
+          defaultValue={defaultValues.soil ?? ""}
         />
         <textarea
           className={styles.dataChild}
           placeholder="Beskärningssätt"
           name="prune"
           onChange={onChange}
+          defaultValue={defaultValues.prune ?? ""}
         />
       </div>
     </div>

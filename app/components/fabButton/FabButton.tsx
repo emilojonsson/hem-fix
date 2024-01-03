@@ -1,5 +1,5 @@
 import { Zoom, Fab } from "@mui/material";
-import { PostAdd, Delete } from "@mui/icons-material";
+import { PostAdd, Delete, EditNote } from "@mui/icons-material";
 
 interface Props {
   zoomIn: boolean;
@@ -31,6 +31,9 @@ const FabButton: React.FC<Props> = ({
       break;
     case "delete":
       iconComponent = <Delete />;
+      break;
+    case "editNote":
+      iconComponent = <EditNote />;
       break;
     default:
       iconComponent = null;
