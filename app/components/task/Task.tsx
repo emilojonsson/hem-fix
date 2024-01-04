@@ -9,13 +9,12 @@ interface ITask {
   title: string;
 }
 interface Props {
-  title: string;
   deleteTask: (newTask: ITask) => void;
   taskItem: ITask;
   token: string;
 }
 
-const Task: React.FC<Props> = ({ taskItem, title, token, deleteTask }) => {
+const Task: React.FC<Props> = ({ taskItem, token, deleteTask }) => {
   const [editedTask, setEditedTask] = useState<ITask>({
     id: taskItem.id,
     title: taskItem.title,
@@ -57,7 +56,7 @@ const Task: React.FC<Props> = ({ taskItem, title, token, deleteTask }) => {
   const editClick = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const updateDataResponse = await fetch(
-      `https://localhost:7167/gardentask/update`,
+      `https://localhost:7167/${editedTask.categoryName}/update`,
       {
         method: "PUT",
         headers: {
@@ -69,14 +68,15 @@ const Task: React.FC<Props> = ({ taskItem, title, token, deleteTask }) => {
       }
     );
     if (updateDataResponse.ok) {
-      console.log("uppdaterat");
     }
   };
 
   return (
     <div className={style.taskContainer}>
       <form onSubmit={editClick}>
-        <textarea>{taskItem.title}</textarea>
+        <textarea onChange={handleChange} name="title">
+          {editedTask.title}
+        </textarea>
         <TaskData
           category={taskItem.categoryName}
           taskItem={taskItem}

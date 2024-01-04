@@ -30,7 +30,6 @@ const Category: React.FC<Props> = ({
           <Task
             key={taskItem.id}
             taskItem={taskItem}
-            title={taskItem.title}
             deleteTask={deleteTask}
             token={token}
           />
