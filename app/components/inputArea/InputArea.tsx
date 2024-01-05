@@ -1,31 +1,36 @@
+"use client";
 import styles from "./InputArea.module.css";
 import { useState } from "react";
 import CategorySelector from "../categorySelector/CategorySelector";
 import FabButton from "../fabButton/FabButton";
 import CategoryData from "../categoryData/CategoryData";
 
-interface ITask {
+type Task = {
   id: string;
-  categoryName: string;
+  categoryName:
+    | "simpletask"
+    | "gardentask"
+    | "maintenancetask"
+    | "purchasetask";
   title: string;
-}
-interface ICategory {
+};
+type Category = {
   id: number;
   name: string;
   nameSwedish: string;
-  tasks: ITask[];
+  tasks: Task[];
   background: string;
   defaultSelected: boolean;
-  deleteTask?: (newTask: ITask) => void;
-}
-interface Props {
-  addTask: (newTask: ITask) => void;
-  categories: ICategory[];
+  deleteTask?: (newTask: Task) => void;
+};
+type InputAreaProps = {
+  addTask: (newTask: Task) => void;
+  categories: Category[];
   token: string;
-}
+};
 
-const InputArea: React.FC<Props> = ({ addTask, categories, token }) => {
-  const [task, setTask] = useState<ITask>({
+function InputArea({ addTask, categories, token }: InputAreaProps) {
+  const [task, setTask] = useState<Task>({
     id: crypto.randomUUID(),
     title: "",
     categoryName: "simpletask",
@@ -34,7 +39,7 @@ const InputArea: React.FC<Props> = ({ addTask, categories, token }) => {
   const addTaskToDatabase = async (
     categoryName: string,
     accessToken: string,
-    task: ITask
+    task: Task
   ) => {
     try {
       const saveResponse = await fetch(
@@ -120,6 +125,6 @@ const InputArea: React.FC<Props> = ({ addTask, categories, token }) => {
       </form>
     </div>
   );
-};
+}
 
 export default InputArea;

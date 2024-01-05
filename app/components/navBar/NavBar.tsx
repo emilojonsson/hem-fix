@@ -4,26 +4,30 @@ import styles from "./NavBar.module.css";
 import Login from "../login/Login";
 import Logout from "../logout/Logout";
 
-interface ITask {
+type Task = {
   id: string;
-  categoryName: string;
+  categoryName:
+    | "simpletask"
+    | "gardentask"
+    | "maintenancetask"
+    | "purchasetask";
   title: string;
-}
-interface ICategory {
+};
+type Category = {
   id: number;
   name: string;
   nameSwedish: string;
-  tasks: ITask[];
+  tasks: Task[];
   background: string;
   defaultSelected: boolean;
-  deleteTask?: (newTask: ITask) => void;
-}
-interface Props {
-  getDataFromAPI: (data: ICategory[]) => void;
+  deleteTask?: (newTask: Task) => void;
+};
+type NavbarProps = {
+  getDataFromAPI: (data: Category[]) => void;
   saveToken: (token: string) => void;
-}
+};
 
-const NavBar: React.FC<Props> = ({ getDataFromAPI, saveToken: token }) => {
+function NavBar({ getDataFromAPI, saveToken: token }: NavbarProps) {
   return (
     <div className={styles.navBarContainer}>
       <h1 className={styles.navBarTitle}>
@@ -47,6 +51,6 @@ const NavBar: React.FC<Props> = ({ getDataFromAPI, saveToken: token }) => {
       </div>
     </div>
   );
-};
+}
 
 export default NavBar;

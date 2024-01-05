@@ -1,6 +1,6 @@
 import styles from "./CategoryGarden.module.css";
 
-interface Props {
+type CategoryGardenProps = {
   onChange: (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -14,8 +14,9 @@ interface Props {
     soil: string | undefined;
     prune: string | undefined;
   };
-}
-const CategoryGarden: React.FC<Props> = ({ onChange, defaultValues }) => {
+};
+
+function CategoryGarden({ onChange, defaultValues }: CategoryGardenProps) {
   return (
     <div>
       <h1>Skötselråd</h1>
@@ -95,6 +96,6 @@ const CategoryGarden: React.FC<Props> = ({ onChange, defaultValues }) => {
       </div>
     </div>
   );
-};
+}
 
 export default CategoryGarden;

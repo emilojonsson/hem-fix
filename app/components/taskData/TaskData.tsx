@@ -1,22 +1,25 @@
 import TaskGardenData from "../taskGardenData/TaskGardenData";
 
-interface ITask {
+type Task = {
   id: string;
-  categoryName: string;
+  categoryName:
+    | "simpletask"
+    | "gardentask"
+    | "maintenancetask"
+    | "purchasetask";
   title: string;
-}
-interface Props {
-  category: string;
-  taskItem: ITask;
+};
+type TaskDataProps = {
+  taskItem: Task;
   onChange: (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => void;
-}
+};
 
-const TaskData: React.FC<Props> = ({ category, taskItem, onChange }) => {
-  switch (category) {
+function TaskData({ taskItem, onChange }: TaskDataProps) {
+  switch (taskItem.categoryName) {
     case "simpletask":
       break;
     case "gardentask":
@@ -25,10 +28,8 @@ const TaskData: React.FC<Props> = ({ category, taskItem, onChange }) => {
       break;
     case "purchasetask":
       break;
-    default:
-      break;
   }
   return "";
-};
+}
 
 export default TaskData;

@@ -1,18 +1,22 @@
 import CategoryGarden from "../categoryGarden/CategoryGarden";
 
-interface Props {
-  categoryName: string;
+type CategoryDataProps = {
+  categoryName:
+    | "simpletask"
+    | "gardentask"
+    | "maintenancetask"
+    | "purchasetask";
   onChange: (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => void;
-}
+};
 
-const CategoryData: React.FC<Props> = ({ categoryName, onChange }) => {
+function CategoryData({ categoryName, onChange }: CategoryDataProps) {
   switch (categoryName) {
     case "simpletask":
-      break;
+      return "";
     case "gardentask":
       const defaultValues = {
         exposure: "Läge",
@@ -26,13 +30,10 @@ const CategoryData: React.FC<Props> = ({ categoryName, onChange }) => {
         <CategoryGarden onChange={onChange} defaultValues={defaultValues} />
       );
     case "maintenancetask":
-      break;
+      return "";
     case "purchasetask":
-      break;
-    default:
-      break;
+      return "";
   }
-  return "";
-};
+}
 
 export default CategoryData;

@@ -1,21 +1,26 @@
+"use client";
 import style from "./Task.module.css";
 import FabButton from "../fabButton/FabButton";
 import TaskData from "../taskData/TaskData";
 import { useState } from "react";
 
-interface ITask {
+type Task = {
   id: string;
-  categoryName: string;
+  categoryName:
+    | "simpletask"
+    | "gardentask"
+    | "maintenancetask"
+    | "purchasetask";
   title: string;
-}
-interface Props {
-  deleteTask: (newTask: ITask) => void;
-  taskItem: ITask;
+};
+type TaskProps = {
+  deleteTask: (newTask: Task) => void;
+  taskItem: Task;
   token: string;
-}
+};
 
-const Task: React.FC<Props> = ({ taskItem, token, deleteTask }) => {
-  const [editedTask, setEditedTask] = useState<ITask>({
+function Task({ taskItem, token, deleteTask }: TaskProps) {
+  const [editedTask, setEditedTask] = useState<Task>({
     id: taskItem.id,
     title: taskItem.title,
     categoryName: taskItem.categoryName,
@@ -45,11 +50,9 @@ const Task: React.FC<Props> = ({ taskItem, token, deleteTask }) => {
     >
   ) {
     const { name, value } = event.target;
-    setEditedTask((prevTask) => {
-      return {
-        ...prevTask,
-        [name]: value,
-      };
+    setEditedTask({
+      ...editedTask,
+      [name]: value,
     });
   }
 
@@ -74,14 +77,13 @@ const Task: React.FC<Props> = ({ taskItem, token, deleteTask }) => {
   return (
     <div className={style.taskContainer}>
       <form onSubmit={editClick}>
-        <textarea onChange={handleChange} name="title">
-          {editedTask.title}
-        </textarea>
-        <TaskData
-          category={taskItem.categoryName}
-          taskItem={taskItem}
+        <textarea
           onChange={handleChange}
+          name="title"
+          value={editedTask.title}
         />
+
+        <TaskData taskItem={taskItem} onChange={handleChange} />
         <FabButton
           zoomIn={true}
           onClick={deleteClick}
@@ -109,6 +111,6 @@ const Task: React.FC<Props> = ({ taskItem, token, deleteTask }) => {
       </form>
     </div>
   );
-};
+}
 
 export default Task;

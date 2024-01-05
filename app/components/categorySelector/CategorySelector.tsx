@@ -1,31 +1,34 @@
+"use client";
 import React, { useState } from "react";
 import styles from "./Category.module.css";
 
-interface ITask {
+type Task = {
   id: string;
-  categoryName: string;
+  categoryName:
+    | "simpletask"
+    | "gardentask"
+    | "maintenancetask"
+    | "purchasetask";
   title: string;
-}
-
-interface ICategory {
+};
+type Category = {
   id: number;
   name: string;
   nameSwedish: string;
-  tasks: ITask[];
+  tasks: Task[];
   background: string;
   defaultSelected: boolean;
-  deleteTask?: (newTask: ITask) => void;
-}
-
-interface Props {
-  categories: ICategory[];
+  deleteTask?: (newTask: Task) => void;
+};
+type CategorySelectorProps = {
+  categories: Category[];
   onChange: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
-}
+};
 
-const CategorySelector: React.FC<Props> = ({ categories, onChange }) => {
-  const [selected, setSelected] = useState<string>("simpletask");
+function CategorySelector({ categories, onChange }: CategorySelectorProps) {
+  const [selected, setSelected] = useState("simpletask");
 
   function onSelect(event: React.ChangeEvent<HTMLInputElement>) {
     const newValue = event.target.value;
@@ -54,6 +57,6 @@ const CategorySelector: React.FC<Props> = ({ categories, onChange }) => {
       ))}
     </div>
   );
-};
+}
 
 export default CategorySelector;

@@ -1,32 +1,36 @@
 import InputArea from "../inputArea/InputArea";
 import styles from "./Header.module.css";
 
-interface ITask {
+type Task = {
   id: string;
-  categoryName: string;
+  categoryName:
+    | "simpletask"
+    | "gardentask"
+    | "maintenancetask"
+    | "purchasetask";
   title: string;
-}
-interface ICategory {
+};
+type Category = {
   id: number;
   name: string;
   nameSwedish: string;
-  tasks: ITask[];
+  tasks: Task[];
   background: string;
   defaultSelected: boolean;
-  deleteTask?: (taskItem: ITask) => void;
-}
-interface Props {
-  addTask: (newTask: ITask) => void;
-  categories: ICategory[];
+  deleteTask?: (taskItem: Task) => void;
+};
+type HeaderProps = {
+  addTask: (newTask: Task) => void;
+  categories: Category[];
   token: string;
-}
+};
 
-const Header: React.FC<Props> = ({ addTask, categories, token }) => {
+function Header({ addTask, categories, token }: HeaderProps) {
   return (
     <div className={styles.headerContainer}>
       <InputArea addTask={addTask} categories={categories} token={token} />
     </div>
   );
-};
+}
 
 export default Header;

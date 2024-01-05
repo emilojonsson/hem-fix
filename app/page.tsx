@@ -4,28 +4,30 @@ import PageBody from "./components/pageBody/PageBody";
 import dataToStart from "./components/category/dataToStart";
 import { useState } from "react";
 
-interface ITask {
+type Task = {
   id: string;
-  categoryName: string;
-
+  categoryName:
+    | "simpletask"
+    | "gardentask"
+    | "maintenancetask"
+    | "purchasetask";
   title: string;
-}
-interface ICategory {
+};
+type Category = {
   id: number;
   name: string;
   nameSwedish: string;
-  tasks: ITask[];
+  tasks: Task[];
   background: string;
   defaultSelected: boolean;
-  deleteTask?: (newTask: ITask) => void;
-}
+  deleteTask?: (newTask: Task) => void;
+};
 
 function Home() {
-  const [categories, setCategories] = useState<ICategory[]>(dataToStart);
-  const [token, setToken] = useState<string>("");
+  const [categories, setCategories] = useState<Category[]>(dataToStart);
+  const [token, setToken] = useState("");
 
-  function addTask(newTask: ITask) {
-    console.log("newtask", newTask);
+  function addTask(newTask: Task) {
     const categoryIndex = findCategoryIndex(newTask);
     if (categoryIndex !== -1) {
       setCategories((prevCategories) => {
@@ -43,7 +45,7 @@ function Home() {
     }
   }
 
-  function deleteTask(taskToDelete: ITask) {
+  function deleteTask(taskToDelete: Task) {
     const categoryIndex = findCategoryIndex(taskToDelete);
     if (categoryIndex !== -1) {
       setCategories((prevCategories) => {
@@ -56,7 +58,7 @@ function Home() {
     }
   }
 
-  function findCategoryIndex(newTask: ITask) {
+  function findCategoryIndex(newTask: Task) {
     const categoryIndex: number = categories.findIndex(
       (category) =>
         category.name.toLowerCase() === newTask.categoryName.toLocaleLowerCase()
@@ -64,7 +66,7 @@ function Home() {
     return categoryIndex;
   }
 
-  function getDataFromAPI(categoryToStart: ICategory[]) {
+  function getDataFromAPI(categoryToStart: Category[]) {
     setCategories(categoryToStart);
   }
 

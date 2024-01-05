@@ -1,25 +1,28 @@
-import Task from "../task/Task";
+import TaskComponent from "../task/Task";
 import styles from "./Category.module.css";
 
-interface ITask {
+type Task = {
   id: string;
-  categoryName: string;
+  categoryName:
+    | "simpletask"
+    | "gardentask"
+    | "maintenancetask"
+    | "purchasetask";
   title: string;
-}
-
-interface Props {
-  tasks: ITask[];
+};
+type CategoryProps = {
+  tasks: Task[];
   backgroundColor: string;
-  deleteTask: (newTask: ITask) => void;
+  deleteTask: (newTask: Task) => void;
   token: string;
-}
+};
 
-const Category: React.FC<Props> = ({
+function Category({
   tasks,
   backgroundColor,
   deleteTask,
   token,
-}) => {
+}: CategoryProps) {
   return (
     <div
       className={styles.categoryContainer}
@@ -27,7 +30,7 @@ const Category: React.FC<Props> = ({
     >
       {tasks.map((taskItem) => {
         return (
-          <Task
+          <TaskComponent
             key={taskItem.id}
             taskItem={taskItem}
             deleteTask={deleteTask}
@@ -37,6 +40,6 @@ const Category: React.FC<Props> = ({
       })}
     </div>
   );
-};
+}
 
 export default Category;

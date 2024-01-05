@@ -2,26 +2,30 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import styles from "./Logout.module.css";
 import dataToStart from "../category/dataToStart";
 
-interface ITask {
+type Task = {
   id: string;
-  categoryName: string;
+  categoryName:
+    | "simpletask"
+    | "gardentask"
+    | "maintenancetask"
+    | "purchasetask";
   title: string;
-}
-interface ICategory {
+};
+type Category = {
   id: number;
   name: string;
   nameSwedish: string;
-  tasks: ITask[];
+  tasks: Task[];
   background: string;
   defaultSelected: boolean;
-  deleteTask?: (newTask: ITask) => void;
-}
+  deleteTask?: (newTask: Task) => void;
+};
 
-interface Props {
-  getDataFromAPI: (date: ICategory[]) => void;
-}
+type LogoutProps = {
+  getDataFromAPI: (date: Category[]) => void;
+};
 
-const Logout: React.FC<Props> = ({ getDataFromAPI }) => {
+function Logout({ getDataFromAPI }: LogoutProps) {
   function handleLogout() {
     getDataFromAPI(dataToStart);
   }
@@ -31,6 +35,6 @@ const Logout: React.FC<Props> = ({ getDataFromAPI }) => {
       <LogoutIcon />
     </button>
   );
-};
+}
 
 export default Logout;

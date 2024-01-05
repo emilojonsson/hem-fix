@@ -1,8 +1,12 @@
 import CategoryGarden from "../categoryGarden/CategoryGarden";
 
-interface ITask {
+type Task = {
   id: string;
-  categoryName: string;
+  categoryName:
+    | "simpletask"
+    | "gardentask"
+    | "maintenancetask"
+    | "purchasetask";
   title: string;
   exposure?: string | undefined;
   minZone?: string | undefined;
@@ -10,17 +14,17 @@ interface ITask {
   plantingDistance?: string | undefined;
   soil?: string | undefined;
   prune?: string | undefined;
-}
-interface Props {
-  taskItem: ITask;
+};
+type TaskGardenDataProps = {
+  taskItem: Task;
   onChange: (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => void;
-}
+};
 
-const TaskGardenData: React.FC<Props> = ({ taskItem, onChange }) => {
+function TaskGardenData({ taskItem, onChange }: TaskGardenDataProps) {
   return (
     <CategoryGarden
       onChange={onChange}
@@ -34,6 +38,6 @@ const TaskGardenData: React.FC<Props> = ({ taskItem, onChange }) => {
       }}
     />
   );
-};
+}
 
 export default TaskGardenData;

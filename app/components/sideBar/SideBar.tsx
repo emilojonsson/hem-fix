@@ -1,11 +1,11 @@
 import styles from "./SideBar.module.css";
 import RoofingIcon from "@mui/icons-material/Roofing";
 
-interface Props {
+interface SidebarProps {
   spanRow: number;
 }
 
-const SideBar: React.FC<Props> = ({ spanRow }) => {
+function SideBar({ spanRow }: SidebarProps) {
   return (
     <div
       className={styles.sideBarContainer}
@@ -19,6 +19,6 @@ const SideBar: React.FC<Props> = ({ spanRow }) => {
       </button>
     </div>
   );
-};
+}
 
 export default SideBar;

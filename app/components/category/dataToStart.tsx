@@ -1,18 +1,22 @@
-interface ITask {
+type Task = {
   id: string;
-  categoryName: string;
+  categoryName:
+    | "simpletask"
+    | "gardentask"
+    | "maintenancetask"
+    | "purchasetask";
   title: string;
-}
-interface ICategory {
+};
+type Category = {
   id: number;
   name: string;
   nameSwedish: string;
-  tasks: ITask[];
+  tasks: Task[];
   background: string;
   defaultSelected: boolean;
-  deleteTask?: (newTask: ITask) => void;
-}
+  deleteTask?: (newTask: Task) => void;
+};
 
-const dataToStart: ICategory[] = [];
+const dataToStart: Category[] = [];
 
 export default dataToStart;

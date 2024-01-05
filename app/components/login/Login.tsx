@@ -2,26 +2,30 @@ import LoginIcon from "@mui/icons-material/Login";
 import styles from "./Login.module.css";
 import dataWhenLogIn from "./dataWhenLogIn";
 
-interface ITask {
+type Task = {
   id: string;
-  categoryName: string;
+  categoryName:
+    | "simpletask"
+    | "gardentask"
+    | "maintenancetask"
+    | "purchasetask";
   title: string;
-}
-interface ICategory {
+};
+type Category = {
   id: number;
   name: string;
   nameSwedish: string;
-  tasks: ITask[];
+  tasks: Task[];
   background: string;
   defaultSelected: boolean;
-  deleteTask?: (newTask: ITask) => void;
-}
-interface Props {
-  getDataFromAPI: (data: ICategory[]) => void;
+  deleteTask?: (newTask: Task) => void;
+};
+type LoginProps = {
+  getDataFromAPI: (data: Category[]) => void;
   saveToken: (token: string) => void;
-}
+};
 
-const Login: React.FC<Props> = ({ getDataFromAPI, saveToken }) => {
+function Login({ getDataFromAPI, saveToken }: LoginProps) {
   const listCategory = async (categoryName: string, accessToken: string) => {
     const loadDataResponse = await fetch(
       `https://localhost:7167/${categoryName}/list`,
@@ -89,6 +93,6 @@ const Login: React.FC<Props> = ({ getDataFromAPI, saveToken }) => {
       <LoginIcon />
     </button>
   );
-};
+}
 
 export default Login;

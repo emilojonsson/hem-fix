@@ -5,13 +5,13 @@ import TextSnippetOutlinedIcon from "@mui/icons-material/TextSnippetOutlined";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 
-interface Props {
+type NavbarButtonProps = {
   text: string;
   href: string;
   iconName: string;
-}
+};
 
-const NavBarButton: React.FC<Props> = ({ text, href, iconName }) => {
+function NavBarButton({ text, href, iconName }: NavbarButtonProps) {
   let iconComponent;
 
   switch (iconName) {
@@ -40,6 +40,6 @@ const NavBarButton: React.FC<Props> = ({ text, href, iconName }) => {
       </Link>
     </button>
   );
-};
+}
 
 export default NavBarButton;

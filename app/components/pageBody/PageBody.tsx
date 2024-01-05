@@ -3,35 +3,39 @@ import SideBar from "../sideBar/SideBar";
 import style from "./PageBody.module.css";
 import Category from "../category/Category";
 
-interface ITask {
+type Task = {
   id: string;
-  categoryName: string;
+  categoryName:
+    | "simpletask"
+    | "gardentask"
+    | "maintenancetask"
+    | "purchasetask";
   title: string;
-}
-interface ICategory {
+};
+type Category = {
   id: number;
   name: string;
   nameSwedish: string;
-  tasks: ITask[];
+  tasks: Task[];
   background: string;
   defaultSelected: boolean;
-  deleteTask?: (newTask: ITask) => void;
-}
-
-interface Props {
+  deleteTask?: (newTask: Task) => void;
+};
+type PageBodyProps = {
   categoriesLength: number;
-  addTask: (newTask: ITask) => void;
-  categories: ICategory[];
-  deleteTask: (newTask: ITask) => void;
+  addTask: (newTask: Task) => void;
+  categories: Category[];
+  deleteTask: (newTask: Task) => void;
   token: string;
-}
-const PageBody: React.FC<Props> = ({
+};
+
+function PageBody({
   categoriesLength,
   addTask,
   categories,
   deleteTask,
   token,
-}) => {
+}: PageBodyProps) {
   return (
     <div className={style.container}>
       <SideBar spanRow={categoriesLength + 1} />
@@ -49,6 +53,6 @@ const PageBody: React.FC<Props> = ({
       })}
     </div>
   );
-};
+}
 
 export default PageBody;

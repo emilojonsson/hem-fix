@@ -1,28 +1,22 @@
 import { Zoom, Fab } from "@mui/material";
 import { PostAdd, Delete, EditNote } from "@mui/icons-material";
 
-interface Props {
+type Props = {
   zoomIn: boolean;
   iconName: string;
   buttonProps: IButtonProps;
   onClick?: () => void;
   type?: "submit" | "button";
-}
-interface IButtonProps {
+};
+type IButtonProps = {
   position: string;
   right: number;
   bottom: number;
   width: number;
   height: number;
-}
+};
 
-const FabButton: React.FC<Props> = ({
-  zoomIn,
-  iconName,
-  buttonProps,
-  onClick,
-  type,
-}) => {
+function FabButton({ zoomIn, iconName, buttonProps, onClick, type }: Props) {
   let iconComponent;
 
   switch (iconName) {
@@ -46,6 +40,6 @@ const FabButton: React.FC<Props> = ({
       </Fab>
     </Zoom>
   );
-};
+}
 
 export default FabButton;
