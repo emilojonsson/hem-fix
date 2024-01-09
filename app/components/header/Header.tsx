@@ -22,7 +22,7 @@ type Category = {
 type HeaderProps = {
   addTask: (newTask: Task) => void;
   categories: Category[];
-  token: string;
+  token: string | null;
 };
 
 function Header({ addTask, categories, token }: HeaderProps) {

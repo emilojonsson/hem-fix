@@ -32,6 +32,7 @@ function NavBarButton({ text, href, iconName }: NavbarButtonProps) {
       iconComponent = null;
       break;
   }
+
   return (
     <button className={styles.navBarButton}>
       <Link href={href}>

@@ -1,33 +1,15 @@
+"use client";
 import LogoutIcon from "@mui/icons-material/Logout";
 import styles from "./Logout.module.css";
-import dataToStart from "../category/dataToStart";
+import { useRouter } from "next/navigation";
 
-type Task = {
-  id: string;
-  categoryName:
-    | "simpletask"
-    | "gardentask"
-    | "maintenancetask"
-    | "purchasetask";
-  title: string;
-};
-type Category = {
-  id: number;
-  name: string;
-  nameSwedish: string;
-  tasks: Task[];
-  background: string;
-  defaultSelected: boolean;
-  deleteTask?: (newTask: Task) => void;
-};
+function Logout() {
+  const router = useRouter();
 
-type LogoutProps = {
-  getDataFromAPI: (date: Category[]) => void;
-};
-
-function Logout({ getDataFromAPI }: LogoutProps) {
   function handleLogout() {
-    getDataFromAPI(dataToStart);
+    localStorage.removeItem("authToken");
+    console.log("localStorage emptied");
+    router.push("/login");
   }
 
   return (

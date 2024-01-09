@@ -27,7 +27,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/components/category/dataWhenLogIn.js",
+    "app/components/category/dataWhenLogIn.tsx",
     "firebase/clientApp.tsx",
     "firebase/clientApp.js"
   ],

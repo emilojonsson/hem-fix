@@ -14,7 +14,7 @@ type CategoryProps = {
   tasks: Task[];
   backgroundColor: string;
   deleteTask: (newTask: Task) => void;
-  token: string;
+  token: string | null;
 };
 
 function Category({

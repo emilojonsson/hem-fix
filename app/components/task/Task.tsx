@@ -16,7 +16,7 @@ type Task = {
 type TaskProps = {
   deleteTask: (newTask: Task) => void;
   taskItem: Task;
-  token: string;
+  token: string | null;
 };
 
 function Task({ taskItem, token, deleteTask }: TaskProps) {

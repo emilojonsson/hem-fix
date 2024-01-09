@@ -26,7 +26,7 @@ type Category = {
 type InputAreaProps = {
   addTask: (newTask: Task) => void;
   categories: Category[];
-  token: string;
+  token: string | null;
 };
 
 function InputArea({ addTask, categories, token }: InputAreaProps) {
@@ -38,7 +38,7 @@ function InputArea({ addTask, categories, token }: InputAreaProps) {
 
   const addTaskToDatabase = async (
     categoryName: string,
-    accessToken: string,
+    accessToken: string | null,
     task: Task
   ) => {
     try {
@@ -81,11 +81,9 @@ function InputArea({ addTask, categories, token }: InputAreaProps) {
     >
   ) {
     const { name, value } = event.target;
-    setTask((prevTask) => {
-      return {
-        ...prevTask,
-        [name]: value,
-      };
+    setTask({
+      ...task,
+      [name]: value,
     });
   }
 

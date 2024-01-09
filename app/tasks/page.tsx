@@ -1,13 +1,15 @@
 "use client";
 import NavBar from "../components/navBar/NavBar";
+import PageBody from "../components/pageBody/PageBody";
 import withAuth from "../hocs/withAuth";
 
-function SettingsPage() {
+function Tasks() {
   return (
     <main>
-      <p>test</p>
+      <NavBar />
+      <PageBody />
     </main>
   );
 }
 
-export default withAuth(SettingsPage);
+export default withAuth(Tasks);

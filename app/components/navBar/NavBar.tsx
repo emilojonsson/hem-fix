@@ -22,12 +22,8 @@ type Category = {
   defaultSelected: boolean;
   deleteTask?: (newTask: Task) => void;
 };
-type NavbarProps = {
-  getDataFromAPI: (data: Category[]) => void;
-  saveToken: (token: string) => void;
-};
 
-function NavBar({ getDataFromAPI, saveToken: token }: NavbarProps) {
+function NavBar() {
   return (
     <div className={styles.navBarContainer}>
       <h1 className={styles.navBarTitle}>
@@ -35,8 +31,7 @@ function NavBar({ getDataFromAPI, saveToken: token }: NavbarProps) {
         HemFix
       </h1>
       <div>
-        <Login getDataFromAPI={getDataFromAPI} saveToken={token} />
-        <Logout getDataFromAPI={getDataFromAPI} />
+        <Logout />
         <NavBarButton text="Packlistor" href="/reciept" iconName="receipt" />
         <NavBarButton text="Kvitton" href="/reciept" iconName="receipt" />
         <NavBarButton text="Anteckningar" href="/" iconName="notes" />

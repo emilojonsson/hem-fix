@@ -7,12 +7,12 @@ type CategoryGardenProps = {
     >
   ) => void;
   defaultValues: {
-    exposure: string | undefined;
-    minZone: string | undefined;
-    maxZone: string | undefined;
-    plantingDistance: string | undefined;
-    soil: string | undefined;
-    prune: string | undefined;
+    exposure?: string;
+    minZone?: string;
+    maxZone?: string;
+    plantingDistance?: string;
+    soil?: string;
+    prune?: string;
   };
 };
 

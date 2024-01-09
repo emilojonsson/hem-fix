@@ -14,9 +14,10 @@ type CategoryDataProps = {
 };
 
 function CategoryData({ categoryName, onChange }: CategoryDataProps) {
+  let dataDisplay = null;
   switch (categoryName) {
     case "simpletask":
-      return "";
+      break;
     case "gardentask":
       const defaultValues = {
         exposure: "Läge",
@@ -26,14 +27,17 @@ function CategoryData({ categoryName, onChange }: CategoryDataProps) {
         soil: undefined,
         prune: undefined,
       };
-      return (
+      dataDisplay = (
         <CategoryGarden onChange={onChange} defaultValues={defaultValues} />
       );
+      break;
     case "maintenancetask":
-      return "";
+      break;
     case "purchasetask":
-      return "";
+      break;
   }
+
+  return dataDisplay;
 }
 
 export default CategoryData;

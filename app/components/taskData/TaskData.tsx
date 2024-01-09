@@ -19,17 +19,19 @@ type TaskDataProps = {
 };
 
 function TaskData({ taskItem, onChange }: TaskDataProps) {
+  let dataDisplay = null;
   switch (taskItem.categoryName) {
     case "simpletask":
       break;
     case "gardentask":
-      return <TaskGardenData taskItem={taskItem} onChange={onChange} />;
+      dataDisplay = <TaskGardenData taskItem={taskItem} onChange={onChange} />;
     case "maintenancetask":
       break;
     case "purchasetask":
       break;
   }
-  return "";
+
+  return dataDisplay;
 }
 
 export default TaskData;
