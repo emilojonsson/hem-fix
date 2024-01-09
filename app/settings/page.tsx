@@ -5,7 +5,7 @@ import withAuth from "../hocs/withAuth";
 function SettingsPage() {
   return (
     <main>
-      <p>test</p>
+      <NavBar />
     </main>
   );
 }

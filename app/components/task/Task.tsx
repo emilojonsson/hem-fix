@@ -81,6 +81,7 @@ function Task({ taskItem, token, deleteTask }: TaskProps) {
           onChange={handleChange}
           name="title"
           value={editedTask.title}
+          rows={1}
         />
 
         <TaskData taskItem={taskItem} onChange={handleChange} />

@@ -1,4 +1,6 @@
+import { useState } from "react";
 import styles from "./CategoryGarden.module.css";
+import DropdownMenu from "../dropdownMenu/DropdownMenu";
 
 type CategoryGardenProps = {
   onChange: (
@@ -13,65 +15,82 @@ type CategoryGardenProps = {
     plantingDistance?: string;
     soil?: string;
     prune?: string;
+    reminderType: string;
+    reminderDate: string;
   };
 };
 
 function CategoryGarden({ onChange, defaultValues }: CategoryGardenProps) {
+  const [reminder, setReminder] = useState("");
+  const exposureOptions = [
+    "sol",
+    "sol till halvskugga",
+    "halvskugga",
+    "halvskugga till skugga",
+    "skugga",
+  ];
+  const zoneOptions = [
+    "Zon 1",
+    "Zon 2",
+    "Zon 3",
+    "Zon 4",
+    "Zon 5",
+    "Zon 6",
+    "Zon 7",
+    "Zon 8",
+  ];
+  const reminderOptions = ["Tidpunkt", "Intervall", "Action"];
+  const monthOptions = [
+    "Januari",
+    "Februari",
+    "Mars",
+    "April",
+    "Maj",
+    "Juni",
+    "Juli",
+    "Augusti",
+    "September",
+    "Oktober",
+    "November",
+    "December",
+  ];
+
+  function onChangeReminder(
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) {
+    const reminderType = event.target.value;
+    setReminder(reminderType);
+    console.log("eventet för ", event);
+    onChange(event);
+  }
+
   return (
     <div>
       <h1>Skötselråd</h1>
       <div className={styles.dataContainer}>
-        <select
-          className={styles.dataChild}
-          name="exposure"
+        <DropdownMenu
+          menuName="exposure"
           defaultValue={defaultValues.exposure}
+          placeholderText="Läge"
           onChange={onChange}
-        >
-          <option value="Läge" disabled>
-            Läge
-          </option>
-          <option value="sol">Sol</option>
-          <option value="sol till halvskugga">Sol till halvskugga</option>
-          <option value="halvskugga">Halvskugga</option>
-          <option value="halvskugga till skugga">Halvskugga till skugga</option>
-          <option value="skugga">Skugga</option>
-        </select>
-        <select
-          className={styles.dataChild}
-          name="minZone"
+          options={exposureOptions}
+        />
+        <DropdownMenu
+          menuName="minZone"
           defaultValue={defaultValues.minZone}
+          placeholderText="Från zon"
           onChange={onChange}
-        >
-          <option value="Från zon" disabled>
-            Från zon
-          </option>
-          <option value="1">Zon 1</option>
-          <option value="2">Zon 2</option>
-          <option value="3">Zon 3</option>
-          <option value="4">Zon 4</option>
-          <option value="5">Zon 5</option>
-          <option value="6">Zon 6</option>
-          <option value="7">Zon 7</option>
-          <option value="8">Zon 8</option>
-        </select>
-        <select
-          className={styles.dataChild}
-          name="maxZone"
+          options={zoneOptions}
+        />
+        <DropdownMenu
+          menuName="maxZone"
           defaultValue={defaultValues.maxZone}
+          placeholderText="Till zon"
           onChange={onChange}
-        >
-          <option value="Till zon" disabled>
-            Till zon
-          </option>
-          <option value="1">Zon 1</option>
-          <option value="2">Zon 2</option>
-          <option value="3">Zon 3</option>
-          <option value="4">Zon 4</option>
-          <option value="5">Zon 5</option>
-          <option value="6">Zon 6</option>
-          <option value="7">Zon 7</option>
-          <option value="8">Zon 8</option>
-        </select>
+          options={zoneOptions}
+        />
         <input
           className={styles.dataChild}
           name="plantingDistance"
@@ -86,6 +105,29 @@ function CategoryGarden({ onChange, defaultValues }: CategoryGardenProps) {
           name="soil"
           defaultValue={defaultValues.soil ?? ""}
         />
+        <DropdownMenu
+          menuName="reminder"
+          defaultValue="Påminnelse"
+          placeholderText="Påminnelse"
+          onChange={onChangeReminder}
+          options={reminderOptions}
+        />
+        {reminder === "Intervall" && (
+          <input
+            type="number"
+            placeholder="Dagar till nästa påminnelse"
+          ></input>
+        )}
+        {reminder === "Tidpunkt" && (
+          <DropdownMenu
+            menuName="month"
+            defaultValue="Månad"
+            placeholderText="Månad"
+            onChange={onChange}
+            options={monthOptions}
+          />
+        )}
+
         <textarea
           className={styles.dataChild}
           placeholder="Beskärningssätt"

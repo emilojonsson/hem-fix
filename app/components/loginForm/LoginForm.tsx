@@ -9,7 +9,6 @@ const LoginPage = () => {
 
   const handleLogin = async () => {
     try {
-      // Gör inloggningsanrop och få autentiseringstoken
       const loginResponse = await fetch("https://localhost:7167/login", {
         method: "POST",
         headers: {
@@ -28,7 +27,6 @@ const LoginPage = () => {
         router.push("/tasks");
       } else {
         console.error("Inloggning misslyckades");
-        // Visa ett felmeddelande eller gör något annat vid misslyckad inloggning
       }
     } catch (error) {
       console.error("Inloggning error:", error);

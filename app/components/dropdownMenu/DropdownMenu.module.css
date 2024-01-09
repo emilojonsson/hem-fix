@@ -1,0 +1,9 @@
+.dataContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.dataChild {
+  resize: none;
+  padding-top: 3px;
+}

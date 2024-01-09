@@ -26,6 +26,8 @@ function CategoryData({ categoryName, onChange }: CategoryDataProps) {
         plantingDistance: undefined,
         soil: undefined,
         prune: undefined,
+        reminderType: "Tidpunkt",
+        reminderDate: "2024-02",
       };
       dataDisplay = (
         <CategoryGarden onChange={onChange} defaultValues={defaultValues} />

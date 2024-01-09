@@ -81,6 +81,7 @@ function InputArea({ addTask, categories, token }: InputAreaProps) {
     >
   ) {
     const { name, value } = event.target;
+    console.log("tasken som sedan ska submittas", task);
     setTask({
       ...task,
       [name]: value,
