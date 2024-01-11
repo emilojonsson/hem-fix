@@ -4,25 +4,8 @@ import { useState } from "react";
 import CategorySelector from "../categorySelector/CategorySelector";
 import FabButton from "../fabButton/FabButton";
 import CategoryData from "../categoryData/CategoryData";
+import { Task, Category } from "@/app/types/MyTypes";
 
-type Task = {
-  id: string;
-  categoryName:
-    | "simpletask"
-    | "gardentask"
-    | "maintenancetask"
-    | "purchasetask";
-  title: string;
-};
-type Category = {
-  id: number;
-  name: string;
-  nameSwedish: string;
-  tasks: Task[];
-  background: string;
-  defaultSelected: boolean;
-  deleteTask?: (newTask: Task) => void;
-};
 type InputAreaProps = {
   addTask: (newTask: Task) => void;
   categories: Category[];
@@ -34,6 +17,7 @@ function InputArea({ addTask, categories, token }: InputAreaProps) {
     id: crypto.randomUUID(),
     title: "",
     categoryName: "simpletask",
+    priority: false,
   });
   const [selected, setSelected] = useState("simpletask");
 
@@ -72,6 +56,7 @@ function InputArea({ addTask, categories, token }: InputAreaProps) {
         categoryName: task.categoryName,
         title: "",
         id: crypto.randomUUID(),
+        priority: false,
       });
       setSelected("simpletask");
     }
@@ -87,6 +72,14 @@ function InputArea({ addTask, categories, token }: InputAreaProps) {
     setTask({
       ...task,
       [name]: value,
+    });
+  }
+
+  function handleCheckbox(event: React.ChangeEvent<HTMLInputElement>) {
+    const { name, checked } = event.target;
+    setTask({
+      ...task,
+      [name]: checked,
     });
   }
 
@@ -107,6 +100,13 @@ function InputArea({ addTask, categories, token }: InputAreaProps) {
               className={styles.inputItem}
               placeholder="rubrik..."
               value={task.title}
+            ></input>
+            <input
+              name="priority"
+              type="checkbox"
+              onChange={handleCheckbox}
+              checked={task.priority}
+              onClick={() => (task.priority = !task.priority)}
             ></input>
           </div>
         </div>

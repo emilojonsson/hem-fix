@@ -1,31 +1,18 @@
-import GardenTaskComponent from "../gardenTask/GardenTask";
+import GardenTask from "../gardenTask/GardenTask";
+import {
+  SimpleTask as SimpleTaskType,
+  GardenTask as GardenTaskType,
+  MaintenanceTask as MaintenanceTaskType,
+  PurchaseTask as PurchaseTaskType,
+} from "@/app/types/MyTypes";
 
-type TaskCommon = {
-  id: string;
-  categoryName:
-    | "simpletask"
-    | "gardentask"
-    | "maintenancetask"
-    | "purchasetask";
-  title: string;
-};
-type SimpleTask = TaskCommon & {};
-type GardenTask = TaskCommon & {
-  exposure?: string;
-  minZone?: string;
-  maxZone?: string;
-  plantingDistance?: string;
-  soil?: string;
-  description?: string;
-  reminderType?: string;
-  month?: string;
-  interval?: number;
-};
-type MaintenanceTask = TaskCommon & {};
-type PurchaseTask = TaskCommon & {};
-type Task = SimpleTask | GardenTask | MaintenanceTask | PurchaseTask;
+type TaskObject =
+  | SimpleTaskType
+  | GardenTaskType
+  | MaintenanceTaskType
+  | PurchaseTaskType;
 type TaskDataProps = {
-  taskItem: Task;
+  taskItem: TaskObject;
   onChange: (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -40,10 +27,7 @@ function TaskData({ taskItem, onChange }: TaskDataProps) {
       break;
     case "gardentask":
       dataDisplay = (
-        <GardenTaskComponent
-          onChange={onChange}
-          taskItem={taskItem as GardenTask}
-        />
+        <GardenTask onChange={onChange} taskItem={taskItem as GardenTaskType} />
       );
     case "maintenancetask":
       break;

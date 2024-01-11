@@ -1,25 +1,8 @@
 "use client";
 import { Dispatch, SetStateAction } from "react";
 import styles from "./Category.module.css";
+import { Category } from "@/app/types/MyTypes";
 
-type Task = {
-  id: string;
-  categoryName:
-    | "simpletask"
-    | "gardentask"
-    | "maintenancetask"
-    | "purchasetask";
-  title: string;
-};
-type Category = {
-  id: number;
-  name: string;
-  nameSwedish: string;
-  tasks: Task[];
-  background: string;
-  defaultSelected: boolean;
-  deleteTask?: (newTask: Task) => void;
-};
 type CategorySelectorProps = {
   categories: Category[];
   selected: string;

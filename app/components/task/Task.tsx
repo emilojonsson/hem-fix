@@ -3,24 +3,16 @@ import style from "./Task.module.css";
 import FabButton from "../fabButton/FabButton";
 import TaskData from "../taskData/TaskData";
 import { useState } from "react";
+import { Task as TaskType } from "@/app/types/MyTypes";
 
-type Task = {
-  id: string;
-  categoryName:
-    | "simpletask"
-    | "gardentask"
-    | "maintenancetask"
-    | "purchasetask";
-  title: string;
-};
 type TaskProps = {
-  deleteTask: (newTask: Task) => void;
-  taskItem: Task;
+  deleteTask: (newTask: TaskType) => void;
+  taskItem: TaskType;
   token: string | null;
 };
 
 function Task({ taskItem, token, deleteTask }: TaskProps) {
-  const [editedTask, setEditedTask] = useState<Task>(taskItem);
+  const [editedTask, setEditedTask] = useState<TaskType>(taskItem);
 
   const deleteClick = async () => {
     const categoryName = taskItem.categoryName;
@@ -50,7 +42,14 @@ function Task({ taskItem, token, deleteTask }: TaskProps) {
       ...editedTask,
       [name]: value,
     });
-    console.log("editedTask", editedTask);
+  }
+
+  function handleCheckbox(event: React.ChangeEvent<HTMLInputElement>) {
+    const { name, checked } = event.target;
+    setEditedTask({
+      ...editedTask,
+      [name]: checked,
+    });
   }
 
   const editClick = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -80,7 +79,13 @@ function Task({ taskItem, token, deleteTask }: TaskProps) {
           value={editedTask.title}
           rows={1}
         />
-
+        <input
+          type="checkbox"
+          name="priority"
+          onChange={handleCheckbox}
+          onClick={() => (taskItem.priority = !taskItem.priority)}
+          checked={taskItem.priority}
+        ></input>
         <TaskData taskItem={taskItem} onChange={handleChange} />
         <FabButton
           zoomIn={true}

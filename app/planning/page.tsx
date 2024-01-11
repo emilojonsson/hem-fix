@@ -1,22 +1,22 @@
 "use client";
 import NavBar from "../components/navBar/NavBar";
-import TaskPageBody from "../components/taskPageBody/TaskPageBody";
 import SideBar from "../components/sideBar/SideBar";
 import Footer from "../components/footer/footer";
 import withAuth from "../hocs/withAuth";
+import PlanningPageBody from "../components/planningPageBody/planningPageBody";
 import style from "./page.module.css";
 
-function TasksPage() {
+function PlanningPage() {
   return (
     <main>
       <NavBar />
       <div className={style.container}>
         <SideBar />
-        <TaskPageBody />
+        <PlanningPageBody />
       </div>
       <Footer />
     </main>
   );
 }
 
-export default withAuth(TasksPage);
+export default withAuth(PlanningPage);

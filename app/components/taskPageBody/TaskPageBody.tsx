@@ -1,32 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
 import Header from "../header/Header";
-import SideBar from "../sideBar/SideBar";
-import style from "./PageBody.module.css";
+import style from "./TaskPageBody.module.css";
 import Category from "../category/Category";
 import dataToStart from "../../constants/DataToStart";
+import { Task, Category as CategoryType } from "@/app/types/MyTypes";
 
-type Task = {
-  id: string;
-  categoryName:
-    | "simpletask"
-    | "gardentask"
-    | "maintenancetask"
-    | "purchasetask";
-  title: string;
-};
-type Category = {
-  id: number;
-  name: string;
-  nameSwedish: string;
-  tasks: Task[];
-  background: string;
-  defaultSelected: boolean;
-  deleteTask?: (newTask: Task) => void;
-};
-
-function PageBody() {
-  const [categories, setCategories] = useState<Category[]>(dataToStart);
+function TaskPageBody() {
+  const [categories, setCategories] = useState<CategoryType[]>(dataToStart);
   const [dataLoaded, setDataLoaded] = useState(false);
 
   const token = localStorage.getItem("authToken");
@@ -123,8 +104,7 @@ function PageBody() {
   }
 
   return (
-    <div className={style.container}>
-      <SideBar spanRow={categories.length + 1} />
+    <div className={style.taskPageBodyContainer}>
       <Header addTask={addTask} categories={categories} token={token} />
       {dataLoaded &&
         categories.map((categoryItem) => {
@@ -142,4 +122,4 @@ function PageBody() {
   );
 }
 
-export default PageBody;
+export default TaskPageBody;

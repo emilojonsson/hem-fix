@@ -1,19 +1,11 @@
-import TaskComponent from "../task/Task";
+import Task from "../task/Task";
 import styles from "./Category.module.css";
+import { Task as TaskType } from "@/app/types/MyTypes";
 
-type Task = {
-  id: string;
-  categoryName:
-    | "simpletask"
-    | "gardentask"
-    | "maintenancetask"
-    | "purchasetask";
-  title: string;
-};
 type CategoryProps = {
-  tasks: Task[];
+  tasks: TaskType[];
   backgroundColor: string;
-  deleteTask: (newTask: Task) => void;
+  deleteTask: (newTask: TaskType) => void;
   token: string | null;
 };
 
@@ -30,7 +22,7 @@ function Category({
     >
       {tasks.map((taskItem) => {
         return (
-          <TaskComponent
+          <Task
             key={taskItem.id}
             taskItem={taskItem}
             deleteTask={deleteTask}

@@ -24,6 +24,7 @@ type GardenTaskProps = {
     reminderType?: string;
     month?: string;
     interval?: number;
+    title: string;
   };
 };
 
@@ -42,7 +43,6 @@ function GardenTask({ onChange, taskItem }: GardenTaskProps) {
 
   return (
     <div>
-      <h1>Växtinformation</h1>
       <div className={styles.dataContainer}>
         <DropdownMenu
           menuName="exposure"

@@ -1,16 +1,9 @@
 import styles from "./SideBar.module.css";
 import RoofingIcon from "@mui/icons-material/Roofing";
 
-interface SidebarProps {
-  spanRow: number;
-}
-
-function SideBar({ spanRow }: SidebarProps) {
+function SideBar() {
   return (
-    <div
-      className={styles.sideBarContainer}
-      style={{ gridRow: `span ${spanRow}` }}
-    >
+    <div className={styles.sideBarContainer}>
       <button className={styles.sideBarButton}>
         <RoofingIcon />
       </button>
