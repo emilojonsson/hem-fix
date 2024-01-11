@@ -35,6 +35,7 @@ function InputArea({ addTask, categories, token }: InputAreaProps) {
     title: "",
     categoryName: "simpletask",
   });
+  const [selected, setSelected] = useState("simpletask");
 
   const addTaskToDatabase = async (
     categoryName: string,
@@ -72,16 +73,17 @@ function InputArea({ addTask, categories, token }: InputAreaProps) {
         title: "",
         id: crypto.randomUUID(),
       });
+      setSelected("simpletask");
     }
     event.preventDefault();
   }
+
   function handleChange(
     event: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) {
     const { name, value } = event.target;
-    console.log("tasken som sedan ska submittas", task);
     setTask({
       ...task,
       [name]: value,
@@ -93,21 +95,23 @@ function InputArea({ addTask, categories, token }: InputAreaProps) {
       <form className={styles.formContainer} onSubmit={submitTask}>
         <div className={styles.formChildLeft}>
           <div>
-            <CategorySelector categories={categories} onChange={handleChange} />
+            <CategorySelector
+              categories={categories}
+              onChange={handleChange}
+              selected={selected}
+              setSelected={setSelected}
+            />
             <input
               name="title"
               onChange={handleChange}
               className={styles.inputItem}
-              placeholder="Rubrik..."
+              placeholder="rubrik..."
               value={task.title}
             ></input>
           </div>
         </div>
         <div className={styles.formChildRight}>
-          <CategoryData
-            categoryName={task.categoryName}
-            onChange={handleChange}
-          />
+          <CategoryData categoryName={selected} onChange={handleChange} />
         </div>
         <FabButton
           zoomIn={true}

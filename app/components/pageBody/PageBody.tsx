@@ -4,7 +4,7 @@ import Header from "../header/Header";
 import SideBar from "../sideBar/SideBar";
 import style from "./PageBody.module.css";
 import Category from "../category/Category";
-import dataToStart from "../category/dataToStart";
+import dataToStart from "../../constants/DataToStart";
 
 type Task = {
   id: string;
@@ -58,7 +58,7 @@ function PageBody() {
       const loadData = await loadDataResponse.json();
       let categoryId: number = 0;
       switch (categoryName) {
-        case "simpltetask":
+        case "simpletask":
           categoryId = 0;
           break;
         case "gardentask":

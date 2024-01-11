@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import styles from "./Category.module.css";
 
 type Task = {
@@ -22,14 +22,19 @@ type Category = {
 };
 type CategorySelectorProps = {
   categories: Category[];
+  selected: string;
+  setSelected: Dispatch<SetStateAction<string>>;
   onChange: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
 };
 
-function CategorySelector({ categories, onChange }: CategorySelectorProps) {
-  const [selected, setSelected] = useState("simpletask");
-
+function CategorySelector({
+  categories,
+  selected,
+  setSelected,
+  onChange,
+}: CategorySelectorProps) {
   function onSelect(event: React.ChangeEvent<HTMLInputElement>) {
     const newValue = event.target.value;
     setSelected(newValue);

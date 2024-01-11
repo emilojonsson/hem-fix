@@ -1,6 +1,6 @@
-import TaskGardenData from "../taskGardenData/TaskGardenData";
+import GardenTaskComponent from "../gardenTask/GardenTask";
 
-type Task = {
+type TaskCommon = {
   id: string;
   categoryName:
     | "simpletask"
@@ -9,6 +9,21 @@ type Task = {
     | "purchasetask";
   title: string;
 };
+type SimpleTask = TaskCommon & {};
+type GardenTask = TaskCommon & {
+  exposure?: string;
+  minZone?: string;
+  maxZone?: string;
+  plantingDistance?: string;
+  soil?: string;
+  description?: string;
+  reminderType?: string;
+  month?: string;
+  interval?: number;
+};
+type MaintenanceTask = TaskCommon & {};
+type PurchaseTask = TaskCommon & {};
+type Task = SimpleTask | GardenTask | MaintenanceTask | PurchaseTask;
 type TaskDataProps = {
   taskItem: Task;
   onChange: (
@@ -24,7 +39,12 @@ function TaskData({ taskItem, onChange }: TaskDataProps) {
     case "simpletask":
       break;
     case "gardentask":
-      dataDisplay = <TaskGardenData taskItem={taskItem} onChange={onChange} />;
+      dataDisplay = (
+        <GardenTaskComponent
+          onChange={onChange}
+          taskItem={taskItem as GardenTask}
+        />
+      );
     case "maintenancetask":
       break;
     case "purchasetask":

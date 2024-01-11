@@ -1,11 +1,7 @@
-import CategoryGarden from "../categoryGarden/CategoryGarden";
+import GardenTask from "../gardenTask/GardenTask";
 
 type CategoryDataProps = {
-  categoryName:
-    | "simpletask"
-    | "gardentask"
-    | "maintenancetask"
-    | "purchasetask";
+  categoryName: string;
   onChange: (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -20,18 +16,17 @@ function CategoryData({ categoryName, onChange }: CategoryDataProps) {
       break;
     case "gardentask":
       const defaultValues = {
-        exposure: "Läge",
-        minZone: "Från zon",
-        maxZone: "Till zon",
+        exposure: "läge",
+        minZone: "från zon",
+        maxZone: "till zon",
         plantingDistance: undefined,
         soil: undefined,
-        prune: undefined,
-        reminderType: "Tidpunkt",
-        reminderDate: "2024-02",
+        description: undefined,
+        reminderType: "påminnelse",
+        month: undefined,
+        interval: undefined,
       };
-      dataDisplay = (
-        <CategoryGarden onChange={onChange} defaultValues={defaultValues} />
-      );
+      dataDisplay = <GardenTask onChange={onChange} taskItem={defaultValues} />;
       break;
     case "maintenancetask":
       break;

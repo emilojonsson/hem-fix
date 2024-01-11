@@ -20,11 +20,7 @@ type TaskProps = {
 };
 
 function Task({ taskItem, token, deleteTask }: TaskProps) {
-  const [editedTask, setEditedTask] = useState<Task>({
-    id: taskItem.id,
-    title: taskItem.title,
-    categoryName: taskItem.categoryName,
-  });
+  const [editedTask, setEditedTask] = useState<Task>(taskItem);
 
   const deleteClick = async () => {
     const categoryName = taskItem.categoryName;
@@ -54,6 +50,7 @@ function Task({ taskItem, token, deleteTask }: TaskProps) {
       ...editedTask,
       [name]: value,
     });
+    console.log("editedTask", editedTask);
   }
 
   const editClick = async (event: React.FormEvent<HTMLFormElement>) => {
