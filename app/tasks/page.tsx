@@ -1,7 +1,7 @@
 "use client";
 import NavBar from "../components/navBar/NavBar";
 import TaskPageBody from "../components/taskPageBody/TaskPageBody";
-import SideBar from "../components/sideBar/SideBar";
+import TaskPageSideBar from "../components/taskPageSideBar/TaskPageSideBar";
 import Footer from "../components/footer/footer";
 import withAuth from "../hocs/withAuth";
 import style from "./page.module.css";
@@ -11,7 +11,7 @@ function TasksPage() {
     <main className={style.pageContainer}>
       <NavBar />
       <div className={style.bodyContainer}>
-        <SideBar />
+        <TaskPageSideBar />
         <TaskPageBody />
         <Footer />
       </div>

@@ -1,6 +1,6 @@
 "use client";
 import NavBar from "../components/navBar/NavBar";
-import SideBar from "../components/sideBar/SideBar";
+import PlanningPageSideBar from "../components/planningPageSideBar/PlanningPageSideBar";
 import Footer from "../components/footer/footer";
 import withAuth from "../hocs/withAuth";
 import PlanningPageBody from "../components/planningPageBody/planningPageBody";
@@ -13,10 +13,10 @@ function PlanningPage() {
   const [purchaseTasks, setPurchaseTasks] = useState<Task[]>([]);
 
   return (
-    <main>
+    <main className={style.pageContainer}>
       <NavBar />
-      <div className={style.container}>
-        <SideBar
+      <div className={style.bodyContainer}>
+        <PlanningPageSideBar
           setPlanningTasks={setPlanningTasks}
           setPurchaseTasks={setPurchaseTasks}
         />
@@ -26,8 +26,8 @@ function PlanningPage() {
           planningTasks={planningTasks}
           purchaseTasks={purchaseTasks}
         />
+        <Footer />
       </div>
-      <Footer />
     </main>
   );
 }

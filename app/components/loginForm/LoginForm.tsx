@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import style from "./LoginForm.module.css";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -30,32 +31,35 @@ const LoginPage = () => {
       }
     } catch (error) {
       console.error("Inloggning error:", error);
-      // Hantera fel här
     }
   };
 
   return (
-    <div>
-      <h1>Inloggning</h1>
-      <label>
-        Användarnamn:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Lösenord:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
-      <br />
-      <button onClick={handleLogin}>Logga in</button>
+    <div className={style.container}>
+      <div className={style.form}>
+        <h1 className={style.header}>Inloggning</h1>
+        <label>
+          Användarnamn:
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </label>
+        <br />
+        <label>
+          Lösenord:
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
+        <br />
+        <button onClick={handleLogin} className={style.button}>
+          Logga in
+        </button>
+      </div>
     </div>
   );
 };

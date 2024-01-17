@@ -11,7 +11,12 @@ function Reminder({ taskItem }: reminderProp) {
   //Hoppa över - knapp
   //Dragable /håll in och dra
   return (
-    <div className={style.reminderContainer}>
+    <div
+      className={style.reminderContainer}
+      style={{
+        background: taskItem.background,
+      }}
+    >
       <p>{taskItem.title}</p>
     </div>
   );

@@ -18,6 +18,8 @@ function InputArea({ addTask, categories, token }: InputAreaProps) {
     title: "",
     categoryName: "simpletask",
     priority: false,
+    background: "#861919",
+    taskIndex: 9999,
   });
   const [selected, setSelected] = useState("simpletask");
 
@@ -49,18 +51,30 @@ function InputArea({ addTask, categories, token }: InputAreaProps) {
   };
 
   function submitTask(event: React.FormEvent<HTMLFormElement>) {
-    if (task.title !== "") {
+    addTaskFromEvent(task.title);
+    event.preventDefault();
+  }
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter") {
+      addTaskFromEvent(task.title);
+    }
+  };
+
+  function addTaskFromEvent(taskTitle: string) {
+    if (taskTitle !== "") {
       addTaskToDatabase(task.categoryName, token, task);
       addTask(task);
       setTask({
-        categoryName: task.categoryName,
+        categoryName: "simpletask",
         title: "",
         id: crypto.randomUUID(),
         priority: false,
+        background: "#861919",
+        taskIndex: 9999,
       });
       setSelected("simpletask");
     }
-    event.preventDefault();
   }
 
   function handleChange(
@@ -69,10 +83,26 @@ function InputArea({ addTask, categories, token }: InputAreaProps) {
     >
   ) {
     const { name, value } = event.target;
-    setTask({
-      ...task,
-      [name]: value,
-    });
+    const categoryIndex = findCategoryIndex(value);
+    if (name === "categoryName") {
+      setTask({
+        ...task,
+        background: categories[categoryIndex].background,
+        [name as keyof typeof task]: value,
+      });
+    } else {
+      setTask({
+        ...task,
+        [name]: value,
+      });
+    }
+  }
+
+  function findCategoryIndex(name: string) {
+    const categoryIndex: number = categories.findIndex(
+      (category) => category.name.toLowerCase() === name.toLowerCase()
+    );
+    return categoryIndex;
   }
 
   function handleCheckbox(event: React.ChangeEvent<HTMLInputElement>) {
@@ -84,7 +114,11 @@ function InputArea({ addTask, categories, token }: InputAreaProps) {
   }
 
   return (
-    <form className={styles.formContainer} onSubmit={submitTask}>
+    <form
+      className={styles.formContainer}
+      onSubmit={submitTask}
+      onKeyDown={handleKeyDown}
+    >
       <div className={styles.formChildLeft}>
         <div>
           <CategorySelector

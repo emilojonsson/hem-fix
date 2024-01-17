@@ -7,6 +7,8 @@ export type Task = {
     | "purchasetask";
   title: string;
   priority: boolean;
+  background: string;
+  taskIndex: number;
 };
 export type Category = {
   id: number;

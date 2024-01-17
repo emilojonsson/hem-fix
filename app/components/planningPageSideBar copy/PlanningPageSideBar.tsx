@@ -1,13 +1,16 @@
-import styles from "./SideBar.module.css";
+import styles from "./PlanningPageSideBar.module.css";
 import RoofingIcon from "@mui/icons-material/Roofing";
 import { Dispatch, SetStateAction } from "react";
 import { Task } from "@/app/types/MyTypes";
 
-type SideBarProp = {
+type PlanningPageSideBarProp = {
   setPlanningTasks: Dispatch<SetStateAction<Task[]>>;
   setPurchaseTasks: Dispatch<SetStateAction<Task[]>>;
 };
-function SideBar({ setPlanningTasks, setPurchaseTasks }: SideBarProp) {
+function PlanningPageSideBar({
+  setPlanningTasks,
+  setPurchaseTasks,
+}: PlanningPageSideBarProp) {
   function sortPlanningOnPriority() {
     setPlanningTasks((prevTasks) => {
       const sortedTasks = [...prevTasks].sort((a, b) => {
@@ -37,4 +40,4 @@ function SideBar({ setPlanningTasks, setPurchaseTasks }: SideBarProp) {
   );
 }
 
-export default SideBar;
+export default PlanningPageSideBar;

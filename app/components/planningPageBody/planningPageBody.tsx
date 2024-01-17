@@ -19,7 +19,7 @@ function PlanningPageBody({
   purchaseTasks,
 }: PlanningPageBodyProp) {
   const [dataLoaded, setDataLoaded] = useState(true);
-  const [isPurchaseList, setIsPurchaseList] = useState(true);
+  const [isPurchaseList, setIsPurchaseList] = useState(false);
 
   const token = localStorage.getItem("authToken");
 

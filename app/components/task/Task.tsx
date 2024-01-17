@@ -77,11 +77,10 @@ function Task({ taskItem, token, deleteTask }: TaskProps) {
   return (
     <form onSubmit={editClick} className={style.taskContainer}>
       <div className={style.taskHeader}>
-        <textarea
+        <input
           onChange={handleChange}
           name="title"
           value={editedTask.title}
-          rows={1}
           className={style.taskChild}
         />
         <input

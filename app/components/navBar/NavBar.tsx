@@ -32,7 +32,7 @@ function NavBar() {
         <RoofingIcon />
         HemFix
       </h1>
-      <div>
+      <div className={styles.buttonContainer}>
         <Logout />
         {/* <NavBarButton text="Packlistor" href="/reciept" iconName="receipt" />
         <NavBarButton text="Kvitton" href="/reciept" iconName="receipt" />

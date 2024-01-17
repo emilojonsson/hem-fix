@@ -44,7 +44,7 @@ function NavBarButton({ text, href, iconName, color }: NavbarButtonProps) {
   return (
     <button className={styles.navBarButton}>
       <Link href={href}>
-        <a style={{ color }}>{text}</a>
+        <div style={{ color }}>{text}</div>
         {iconComponent}
       </Link>
     </button>

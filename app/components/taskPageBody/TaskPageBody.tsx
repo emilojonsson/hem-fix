@@ -115,6 +115,7 @@ function TaskPageBody() {
               backgroundColor={categoryItem.background}
               deleteTask={deleteTask}
               token={token}
+              categoryName={categoryItem.name}
             />
           );
         })}

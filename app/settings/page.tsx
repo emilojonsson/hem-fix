@@ -19,24 +19,32 @@ function SettingsPage() {
       title: "Emil1",
       categoryName: "simpletask",
       priority: true,
+      taskIndex: 9999,
+      background: "blue",
     },
     {
       id: "2341",
       title: "Emil2",
       categoryName: "simpletask",
       priority: true,
+      taskIndex: 9999,
+      background: "blue",
     },
     {
       id: "3412",
       title: "Emil3",
       categoryName: "simpletask",
       priority: true,
+      taskIndex: 9999,
+      background: "blue",
     },
     {
       id: "4123",
       title: "Emil4",
       categoryName: "simpletask",
       priority: true,
+      taskIndex: 9999,
+      background: "blue",
     },
   ];
   const [tasks, setTasks] = useState<TaskType[]>(data);
@@ -49,8 +57,6 @@ function SettingsPage() {
     setTasks((prevTasks) => {
       const oldIndex = prevTasks.findIndex((task) => task.id === active.id);
       const newIndex = prevTasks.findIndex((task) => task.id === over?.id);
-      console.log(oldIndex, newIndex);
-      console.log(arrayMove(prevTasks, oldIndex, newIndex));
       return arrayMove(prevTasks, oldIndex, newIndex);
     });
   }
