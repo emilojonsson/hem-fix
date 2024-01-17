@@ -84,49 +84,50 @@ function InputArea({ addTask, categories, token }: InputAreaProps) {
   }
 
   return (
-    <div>
-      <form className={styles.formContainer} onSubmit={submitTask}>
-        <div className={styles.formChildLeft}>
-          <div>
-            <CategorySelector
-              categories={categories}
-              onChange={handleChange}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <input
-              name="title"
-              onChange={handleChange}
-              className={styles.inputItem}
-              placeholder="rubrik..."
-              value={task.title}
-            ></input>
-            <input
-              name="priority"
-              type="checkbox"
-              onChange={handleCheckbox}
-              checked={task.priority}
-              onClick={() => (task.priority = !task.priority)}
-            ></input>
-          </div>
+    <form className={styles.formContainer} onSubmit={submitTask}>
+      <div className={styles.formChildLeft}>
+        <div>
+          <CategorySelector
+            categories={categories}
+            onChange={handleChange}
+            selected={selected}
+            setSelected={setSelected}
+          />
+          <input
+            name="title"
+            onChange={handleChange}
+            className={styles.inputItem}
+            placeholder="rubrik..."
+            value={task.title}
+          ></input>
+          <input
+            name="priority"
+            type="checkbox"
+            onChange={handleCheckbox}
+            checked={task.priority}
+            onClick={() => (task.priority = !task.priority)}
+            className={styles.checkBox}
+          ></input>
+          <label>Prioriterat!</label>
         </div>
-        <div className={styles.formChildRight}>
-          <CategoryData categoryName={selected} onChange={handleChange} />
-        </div>
-        <FabButton
-          zoomIn={true}
-          iconName="postAdd"
-          buttonProps={{
-            position: "absolute",
-            right: 18,
-            bottom: -18,
-            width: 36,
-            height: 36,
-          }}
-          type="submit"
-        />
-      </form>
-    </div>
+      </div>
+      <div className={styles.formChildRight}>
+        <CategoryData categoryName={selected} onChange={handleChange} />
+      </div>
+      <FabButton
+        zoomIn={true}
+        iconName="postAdd"
+        buttonProps={{
+          position: "absolute",
+          right: 18,
+          bottom: -18,
+          width: 36,
+          height: 36,
+          border: "1px solid gray",
+        }}
+        type="submit"
+      />
+    </form>
   );
 }
 

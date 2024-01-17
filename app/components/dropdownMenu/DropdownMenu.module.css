@@ -3,7 +3,18 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
+
 .dataChild {
   resize: none;
   padding-top: 3px;
+  color: #808080;
+  outline: none;
+}
+
+.placeholderOption {
+  color: lightgray;
+}
+
+.valueOption {
+  color: black;
 }

@@ -1,0 +1,13 @@
+.CategorySelectorContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.CategorySelectorPair {
+  display: flex;
+  font-weight: bold;
+}
+.label {
+  padding-right: 2px;
+}

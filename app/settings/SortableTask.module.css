@@ -1,0 +1,9 @@
+.childdnd {
+  background: blue;
+  padding: 5px;
+}
+
+.dnd {
+  display: flex;
+  flex-direction: row;
+}

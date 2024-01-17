@@ -13,6 +13,7 @@ type TaskProps = {
 
 function Task({ taskItem, token, deleteTask }: TaskProps) {
   const [editedTask, setEditedTask] = useState<TaskType>(taskItem);
+  const [showEditButton, setShowEditButton] = useState(false);
 
   const deleteClick = async () => {
     const categoryName = taskItem.categoryName;
@@ -37,6 +38,7 @@ function Task({ taskItem, token, deleteTask }: TaskProps) {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) {
+    setShowEditButton(true);
     const { name, value } = event.target;
     setEditedTask({
       ...editedTask,
@@ -45,6 +47,7 @@ function Task({ taskItem, token, deleteTask }: TaskProps) {
   }
 
   function handleCheckbox(event: React.ChangeEvent<HTMLInputElement>) {
+    setShowEditButton(true);
     const { name, checked } = event.target;
     setEditedTask({
       ...editedTask,
@@ -67,17 +70,19 @@ function Task({ taskItem, token, deleteTask }: TaskProps) {
       }
     );
     if (updateDataResponse.ok) {
+      setShowEditButton(false);
     }
   };
 
   return (
-    <div className={style.taskContainer}>
-      <form onSubmit={editClick}>
+    <form onSubmit={editClick} className={style.taskContainer}>
+      <div className={style.taskHeader}>
         <textarea
           onChange={handleChange}
           name="title"
           value={editedTask.title}
           rows={1}
+          className={style.taskChild}
         />
         <input
           type="checkbox"
@@ -86,19 +91,22 @@ function Task({ taskItem, token, deleteTask }: TaskProps) {
           onClick={() => (taskItem.priority = !taskItem.priority)}
           checked={taskItem.priority}
         ></input>
-        <TaskData taskItem={taskItem} onChange={handleChange} />
-        <FabButton
-          zoomIn={true}
-          onClick={deleteClick}
-          iconName="delete"
-          buttonProps={{
-            position: "absolute",
-            right: 18,
-            bottom: -18,
-            width: 36,
-            height: 36,
-          }}
-        />
+      </div>
+      <TaskData taskItem={taskItem} onChange={handleChange} />
+      <FabButton
+        zoomIn={true}
+        onClick={deleteClick}
+        iconName="delete"
+        buttonProps={{
+          position: "absolute",
+          right: 18,
+          bottom: -18,
+          width: 36,
+          height: 36,
+          border: "1px solid gray",
+        }}
+      />
+      {showEditButton && (
         <FabButton
           zoomIn={true}
           type="submit"
@@ -109,10 +117,11 @@ function Task({ taskItem, token, deleteTask }: TaskProps) {
             bottom: -18,
             width: 36,
             height: 36,
+            border: "1px solid gray",
           }}
         />
-      </form>
-    </div>
+      )}
+    </form>
   );
 }
 

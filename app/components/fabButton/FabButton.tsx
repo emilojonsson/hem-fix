@@ -14,6 +14,7 @@ type IButtonProps = {
   bottom: number;
   width: number;
   height: number;
+  border: string;
 };
 
 function FabButton({ zoomIn, iconName, buttonProps, onClick, type }: Props) {

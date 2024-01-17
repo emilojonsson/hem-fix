@@ -1,14 +1,17 @@
 .navBarContainer {
+  min-height: 5vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   background: rgb(0, 0, 0);
+  background-image: url("https://www.transparenttextures.com/patterns/dark-denim.png");
+  border-bottom: 3px solid rgba(0, 0, 0, 0.1);
   padding: 5px;
 }
 
 .navBarTitle {
   font-size: large;
-  color: #bfcc0d;
+  color: #c3b01b;
   font-weight: bold;
 }

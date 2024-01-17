@@ -4,11 +4,9 @@
   justify-content: flex-start;
   flex-wrap: nowrap;
   align-items: center;
-  color: #404220;
-  background: #f5d878;
-  background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+  background: #0f0f05;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-denim.png");
   padding-top: 15px;
-  /* grid-row: span 2; */
 }
 
 .sideBarButton {

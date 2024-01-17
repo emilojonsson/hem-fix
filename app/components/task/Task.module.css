@@ -1,12 +1,15 @@
 .taskContainer {
+  display: flex;
+  flex-direction: column;
   position: relative;
   background: #fff;
   border-radius: 7px;
-  box-shadow: 0 2px 5px #ccc;
+  box-shadow: 0 2px 5px #000000;
   padding: 10px;
   width: 240px;
   margin: 16px;
   float: left;
+  padding-bottom: 20px;
 }
 
 .deleteButton {
@@ -15,4 +18,16 @@
   bottom: -18px;
   width: 36px;
   height: 36px;
+}
+
+.taskHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.taskChild {
+  outline: none;
+  resize: none;
 }

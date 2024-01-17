@@ -25,7 +25,7 @@ function TaskPageBody() {
   }, [token]);
 
   const listCategory = async (categoryName: string, token: string | null) => {
-    const loadDataResponse = await fetch(
+    const listDataResponse = await fetch(
       `https://localhost:7167/${categoryName}/list`,
       {
         method: "GET",
@@ -35,8 +35,8 @@ function TaskPageBody() {
         },
       }
     );
-    if (loadDataResponse.ok) {
-      const loadData = await loadDataResponse.json();
+    if (listDataResponse.ok) {
+      const dataResponse = await listDataResponse.json();
       let categoryId: number = 0;
       switch (categoryName) {
         case "simpletask":
@@ -57,7 +57,7 @@ function TaskPageBody() {
 
         updatedCategories[categoryId] = {
           ...updatedCategories[categoryId],
-          tasks: loadData,
+          tasks: dataResponse,
         };
         return updatedCategories;
       });

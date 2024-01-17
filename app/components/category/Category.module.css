@@ -1,2 +1,8 @@
 .categoryContainer {
+  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }

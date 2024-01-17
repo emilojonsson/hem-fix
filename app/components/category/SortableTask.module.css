@@ -1,0 +1,5 @@
+.dragHandle {
+  position: relative;
+  left: 45%;
+  bottom: 10px;
+}

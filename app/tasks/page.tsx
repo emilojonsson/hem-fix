@@ -8,13 +8,13 @@ import style from "./page.module.css";
 
 function TasksPage() {
   return (
-    <main>
+    <main className={style.pageContainer}>
       <NavBar />
-      <div className={style.container}>
+      <div className={style.bodyContainer}>
         <SideBar />
         <TaskPageBody />
+        <Footer />
       </div>
-      <Footer />
     </main>
   );
 }

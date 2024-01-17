@@ -1,6 +1,6 @@
 "use client";
 import { Dispatch, SetStateAction } from "react";
-import styles from "./Category.module.css";
+import styles from "./CategorySelector.module.css";
 import { Category } from "@/app/types/MyTypes";
 
 type CategorySelectorProps = {
@@ -32,12 +32,12 @@ function CategorySelector({
           key={categoryItem.id}
           style={{ color: categoryItem.background }}
         >
-          <label>{categoryItem.nameSwedish}</label>
+          <label className={styles.label}>{categoryItem.nameSwedish}</label>
           <input
             type="radio"
             name="categoryName"
             value={categoryItem.name}
-            className="radio"
+            className="radio border-gray-350"
             checked={selected === categoryItem.name}
             onChange={onSelect}
           />

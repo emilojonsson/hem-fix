@@ -4,30 +4,38 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import TextSnippetOutlinedIcon from "@mui/icons-material/TextSnippetOutlined";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
+import LogoutIcon from "@mui/icons-material/Logout";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 type NavbarButtonProps = {
   text: string;
   href: string;
   iconName: string;
+  color: string;
 };
 
-function NavBarButton({ text, href, iconName }: NavbarButtonProps) {
+function NavBarButton({ text, href, iconName, color }: NavbarButtonProps) {
   let iconComponent;
 
   switch (iconName) {
     case "settings":
-      iconComponent = <SettingsOutlinedIcon />;
+      iconComponent = <SettingsOutlinedIcon htmlColor={color} />;
       break;
     case "notes":
-      iconComponent = <TextSnippetOutlinedIcon />;
+      iconComponent = <TextSnippetOutlinedIcon htmlColor={color} />;
       break;
     case "tasks":
-      iconComponent = <TaskAltIcon />;
+      iconComponent = <TaskAltIcon htmlColor={color} />;
       break;
     case "receipt":
-      iconComponent = <ReceiptLongIcon />;
+      iconComponent = <ReceiptLongIcon htmlColor={color} />;
       break;
-
+    case "logout":
+      iconComponent = <LogoutIcon />;
+      break;
+    case "recipe":
+      iconComponent = <MenuBookIcon htmlColor={color} />;
+      break;
     default:
       iconComponent = null;
       break;
@@ -36,7 +44,7 @@ function NavBarButton({ text, href, iconName }: NavbarButtonProps) {
   return (
     <button className={styles.navBarButton}>
       <Link href={href}>
-        {text}
+        <a style={{ color }}>{text}</a>
         {iconComponent}
       </Link>
     </button>

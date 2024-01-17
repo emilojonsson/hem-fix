@@ -1,4 +1,4 @@
-import style from "./DropdownMenu.module.css";
+import styles from "./DropdownMenu.module.css";
 
 type DropdownMenuProps = {
   menuName: string;
@@ -21,14 +21,16 @@ function DropdownMenu({
 }: DropdownMenuProps) {
   return (
     <select
-      className={style.dataChild}
+      className={styles.dataChild}
       name={menuName}
       defaultValue={defaultValue}
       onChange={onChange}
     >
-      <option disabled>{placeholderText}</option>
+      <option disabled className={styles.placeholderOption}>
+        {placeholderText}
+      </option>
       {options.map((option) => (
-        <option key={option} value={option}>
+        <option key={option} value={option} className={styles.valueOption}>
           {option}
         </option>
       ))}

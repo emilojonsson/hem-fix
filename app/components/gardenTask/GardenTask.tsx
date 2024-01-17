@@ -24,7 +24,7 @@ type GardenTaskProps = {
     reminderType?: string;
     month?: string;
     interval?: number;
-    title: string;
+    title?: string;
   };
 };
 
@@ -42,92 +42,90 @@ function GardenTask({ onChange, taskItem }: GardenTaskProps) {
   }
 
   return (
-    <div>
-      <div className={styles.dataContainer}>
-        <DropdownMenu
-          menuName="exposure"
-          defaultValue={
-            taskItem.exposure === "" || !taskItem.exposure
-              ? "läge"
-              : taskItem.exposure
-          }
-          placeholderText="läge"
-          onChange={onChange}
-          options={exposureOptions}
-        />
-        <DropdownMenu
-          menuName="minZone"
-          defaultValue={
-            taskItem.minZone === "" || !taskItem.minZone
-              ? "läge"
-              : taskItem.minZone
-          }
-          placeholderText="från zon"
-          onChange={onChange}
-          options={zoneOptions}
-        />
-        <DropdownMenu
-          menuName="maxZone"
-          defaultValue={
-            taskItem.maxZone === "" || !taskItem.maxZone
-              ? "läge"
-              : taskItem.maxZone
-          }
-          placeholderText="till zon"
-          onChange={onChange}
-          options={zoneOptions}
-        />
+    <div className={styles.dataContainer}>
+      <DropdownMenu
+        menuName="exposure"
+        defaultValue={
+          taskItem.exposure === "" || !taskItem.exposure
+            ? "läge"
+            : taskItem.exposure
+        }
+        placeholderText="läge"
+        onChange={onChange}
+        options={exposureOptions}
+      />
+      <DropdownMenu
+        menuName="minZone"
+        defaultValue={
+          taskItem.minZone === "" || !taskItem.minZone
+            ? "läge"
+            : taskItem.minZone
+        }
+        placeholderText="från zon"
+        onChange={onChange}
+        options={zoneOptions}
+      />
+      <DropdownMenu
+        menuName="maxZone"
+        defaultValue={
+          taskItem.maxZone === "" || !taskItem.maxZone
+            ? "läge"
+            : taskItem.maxZone
+        }
+        placeholderText="till zon"
+        onChange={onChange}
+        options={zoneOptions}
+      />
+      <input
+        className={styles.dataChild}
+        name="plantingDistance"
+        placeholder="plant.avst. [m]"
+        onChange={onChange}
+        defaultValue={taskItem.plantingDistance ?? ""}
+      />
+      <input
+        className={styles.dataChild}
+        placeholder="jordmån"
+        onChange={onChange}
+        name="soil"
+        defaultValue={taskItem.soil ?? ""}
+      />
+      <textarea
+        className={styles.dataChild}
+        placeholder="beskrivning..."
+        name="description"
+        onChange={onChange}
+        defaultValue={taskItem.description ?? ""}
+      />
+      <DropdownMenu
+        menuName="reminderType"
+        defaultValue={
+          taskItem.reminderType === "" || !taskItem.reminderType
+            ? "läge"
+            : taskItem.reminderType
+        }
+        placeholderText="påminnelse"
+        onChange={onChangeReminder}
+        options={reminderOptions}
+      />
+      {reminder === "intervall" && (
         <input
-          className={styles.dataChild}
-          name="plantingDistance"
-          placeholder="plant.avst. [m]"
+          type="number"
+          placeholder="dagar till nästa påminnelse"
           onChange={onChange}
-          defaultValue={taskItem.plantingDistance ?? ""}
-        />
-        <input
-          className={styles.dataChild}
-          placeholder="jordmån"
-          onChange={onChange}
-          name="soil"
-          defaultValue={taskItem.soil ?? ""}
-        />
-        <textarea
-          className={styles.dataChild}
-          placeholder="beskrivning..."
-          name="description"
-          onChange={onChange}
-          defaultValue={taskItem.description ?? ""}
-        />
+          name="interval"
+          defaultValue={taskItem.interval ?? 0}
+        ></input>
+      )}
+      {reminder === "tidpunkt" && (
         <DropdownMenu
-          menuName="reminderType"
-          defaultValue={
-            taskItem.reminderType === "" || !taskItem.reminderType
-              ? "läge"
-              : taskItem.reminderType
-          }
-          placeholderText="påminnelse"
-          onChange={onChangeReminder}
-          options={reminderOptions}
+          menuName="month"
+          defaultValue={taskItem.month}
+          placeholderText="månad"
+          onChange={onChange}
+          options={monthOptions}
         />
-        {reminder === "intervall" && (
-          <input
-            type="number"
-            placeholder="dagar till nästa påminnelse"
-            onChange={onChange}
-            name="interval"
-            defaultValue={taskItem.interval ?? 0}
-          ></input>
-        )}
-        {reminder === "tidpunkt" && (
-          <DropdownMenu
-            menuName="month"
-            defaultValue={taskItem.month}
-            placeholderText="månad"
-            onChange={onChange}
-            options={monthOptions}
-          />
-        )}
-      </div>
+      )}
     </div>
   );
 }

@@ -3,25 +3,34 @@
   right: 10%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  background: #fff;
+  background: #ffffff;
   border-radius: 7px;
   padding: 5px;
   width: 50vw;
-  box-shadow: 0 1px 5px rgb(138, 137, 137);
+  box-shadow: 0 1px 5px rgb(0, 0, 0);
+  padding-bottom: 20px;
 }
+
 .formChildLeft {
   display: flex;
   flex-direction: column;
 }
+
 .formChildRight {
   display: flex;
   flex-direction: column;
 }
+
 .categorySelectorContainer {
   display: flex;
 }
+
 .inputItem {
   outline: none;
   resize: none;
   padding-top: 3px;
+}
+
+.checkBox {
+  margin-right: 2px;
 }

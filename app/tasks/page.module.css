@@ -1,4 +1,11 @@
-.container {
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.bodyContainer {
+  flex: 1;
   display: grid;
   grid-template-columns: 1fr 20fr;
   grid-template-rows: auto;
